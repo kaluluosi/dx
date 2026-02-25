@@ -57,3 +57,15 @@ static func _glob(root_path: String, include: Array[String]=["*"], exclude: Arra
 			_n_files.append(file)
 	
 	return _n_files
+	
+static func eval(params:Array,expr: String) -> Variant:
+	# 构造包含表达式的脚本
+	var code = "func _expr(params):\n    " + expr
+	var script = GDScript.new()
+	script.source_code = code
+
+	if script == null:
+		push_error("表达式语法错误：", expr)
+		return null
+	
+	return script.new()._expr(params)
