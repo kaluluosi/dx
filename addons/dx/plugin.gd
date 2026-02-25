@@ -9,13 +9,13 @@ extends EditorPlugin
 func _enable_plugin() -> void:
 	# Add autoloads here.
 	DXSetting.enable()
-	pass
+	
 
 
 func _disable_plugin() -> void:
 	# Remove autoloads here.
 	DXSetting.disable()
-	pass
+	
 
 
 func _enter_tree() -> void:
