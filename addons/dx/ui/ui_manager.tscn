@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cm5uqx3psj6g2"]
+
+[ext_resource type="Script" uid="uid://dwt64mfk7ba1q" path="res://addons/dx/ui/ui_manager.gd" id="1_e8m4x"]
+
+[node name="UIManager" type="Node" unique_id=476228371]
+script = ExtResource("1_e8m4x")
+
+[node name="CL_Main" type="CanvasLayer" parent="." unique_id=2055655479]
+layer = 10
+
+[node name="CL_Popup" type="CanvasLayer" parent="." unique_id=665204870]
+layer = 20
+
+[node name="CL_Top" type="CanvasLayer" parent="." unique_id=61426407]
+layer = 30

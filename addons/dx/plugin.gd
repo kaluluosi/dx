@@ -10,11 +10,14 @@ func _enable_plugin() -> void:
 	# Add autoloads here.
 	DXSetting.enable()
 	
+	add_autoload_singleton("UIManager","res://addons/dx/ui/ui_manager.tscn")
 
 
 func _disable_plugin() -> void:
 	# Remove autoloads here.
 	DXSetting.disable()
+	
+	remove_autoload_singleton("UIManager")
 	
 
 
