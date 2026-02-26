@@ -1,8 +1,16 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
 
-/**        export-ignore
+# 第一步：默认忽略所有文件/目录（基础规则）
+/** export-ignore
 
-/addons/      !export-ignore
-/addons/dx    !export-ignore
+# 第二步：取消忽略 addons 目录本身（必须先放开目录，才能放开其子目录）
+/addons/ !export-ignore
+
+# 第三步：只取消忽略 addons/dx 目录及其所有内容
+/addons/dx/ !export-ignore
 /addons/dx/** !export-ignore
+
+# 显式忽略 addons 下的其他目录（比如 gut），确保只保留 dx
+/addons/gut/ export-ignore
+/addons/gut/** export-ignore
