@@ -1,19 +1,17 @@
 extends RefCounted
 class_name DXSetting
 
-const SETTING_LOG_FORMAT = "dx/log/format"
-
-const DEFAULT_LOG_FORMAT = "[color={color}][{time}] [b]{level}[/b] [url={source}:{line}][{file}:{line}][/url]: {msg}[/color]"
+const DEFINE = preload("res://addons/dx/dx_define.gd")
 
 static var _settings:Dictionary
 
 static var log_format:String:
 	get():
-		return ProjectSettings.get_setting(SETTING_LOG_FORMAT,DEFAULT_LOG_FORMAT)
+		return ProjectSettings.get_setting(DEFINE.SETTING_LOG_FORMAT,DEFINE.DEFAULT_LOG_FORMAT)
 
 static func enable():
 	# 在这里注册项目设置
-	register_setting(SETTING_LOG_FORMAT,DEFAULT_LOG_FORMAT,TYPE_STRING,PROPERTY_HINT_EXPRESSION,"",true)
+	register_setting(DEFINE.SETTING_LOG_FORMAT,DEFINE.DEFAULT_LOG_FORMAT,TYPE_STRING,PROPERTY_HINT_EXPRESSION,"",true)
 	
 static func disable():
 	cleanup()

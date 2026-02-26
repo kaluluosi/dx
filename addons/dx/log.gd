@@ -1,6 +1,8 @@
 extends Object
 class_name Log
 
+const DEFINE = preload("res://addons/dx/dx_define.gd")
+
 enum Level {
 	DEBUG = 0,
 	INFO,
@@ -19,7 +21,7 @@ const COLOR_PALETTE = {
 
 static var format:String:
 	get():
-		var fmt = ProjectSettings.get_setting("dx/log/format",DXSetting.DEFAULT_LOG_FORMAT)
+		var fmt = ProjectSettings.get_setting("dx/log/format",DEFINE.DEFAULT_LOG_FORMAT)
 		return fmt
 
 static func _make_log(msg:String,args:Array,level:Level = Level.INFO,with_stack:bool=false):
