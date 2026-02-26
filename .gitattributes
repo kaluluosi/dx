@@ -3,5 +3,5 @@
 
 /**        export-ignore
 
-/addons    !export-ignore
-/addons/** !export-ignore
+/addons/dx    !export-ignore
+/addons/dx/** !export-ignore
