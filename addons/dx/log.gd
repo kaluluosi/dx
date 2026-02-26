@@ -24,8 +24,7 @@ static var format:String:
 		var fmt = ProjectSettings.get_setting("dx/log/format",DEFINE.DEFAULT_LOG_FORMAT)
 		return fmt
 
-static func _make_log(msg:String,args:Array,level:Level = Level.INFO,with_stack:bool=false):
-	msg = msg%args
+static func _make_log(msg:String,level:Level = Level.INFO,with_stack:bool=false):
 	
 	var stack = get_stack() # 获取堆栈
 	var caller
@@ -62,36 +61,44 @@ static func _make_log(msg:String,args:Array,level:Level = Level.INFO,with_stack:
 	return text
 
 		
-static func debug(msg:String, ...args):
+static func debugf(msg:String, ...args):
 	if not OS.is_debug_build():
 		return
 	
-	var text = _make_log(msg,args,Level.DEBUG,true)
+	var text = _make_log(msg%args,Level.DEBUG,true)
 	print_rich(text)
 
-static func info(msg:String, ...args):
+static func debug(...args):
+	debugf(" ".join(args))
+
+static func infof(msg:String, ...args):
 	if not OS.is_debug_build():
 		return
 		
-	var text = _make_log(msg,args,Level.INFO)
+	var text = _make_log(msg%args,Level.INFO)
+	print_rich(text)
+
+static func info(...args):
+	infof(" ".join(args))
+		
+static func warnf(msg:String, ...args):
+	var text = _make_log(msg%args,Level.WARN,false)
+	print_rich(text)
+
+static func warn(...args):
+	warnf(" ".join(args))
+	
+static func errorf(msg:String, ...args):
+	var text = _make_log(msg%args,Level.ERROR,true)
+	print_rich(text)
+
+static func error(...args):
+	errorf(" ".join(args))
+	
+
+static func fatalf(msg:String, ...args):
+	var text = _make_log(msg%args,Level.FATAL,true)
 	print_rich(text)
 	
-static func warn(msg:String, ...args):
-	var text = _make_log(msg,args,Level.WARN,false)
-	print_rich(text)
-	
-static func error(msg:String, ...args):
-	var text = _make_log(msg,args,Level.ERROR,false)
-	print_rich(text)
-	
-static func errorx(msg:String, ...args):
-	var text = _make_log(msg,args,Level.ERROR,true)
-	print_rich(text)
-	
-static func fatal(msg:String, ...args):
-	var text = _make_log(msg,args,Level.FATAL,false)
-	print_rich(text)
-	
-static func fatalx(msg:String, ...args):
-	var text = _make_log(msg,args,Level.FATAL,true)
-	print_rich(text)
+static func fatal(...args):
+	fatalf(" ".join(args))
